@@ -8,7 +8,7 @@ Link to PlexRequests
 
 Link to PlexEmail
 
-Shows Plex status (just an image, you have to manually update it when you're going to do maintenance)
+Shows Plex status (just an image, you have to manually update it when you're going to do maintenance) or do as I do and have a "We'll be back soon" site that you can quickly change so that your domain points to that instead of PlexRedirect.
 
 # Installing:
 Add this to your webserver root folder. You can rename it to your server name if you would like. Access it via your IP address.
