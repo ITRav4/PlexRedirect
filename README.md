@@ -2,11 +2,11 @@
 a Plex landing page that redirects you to various sites.
 
 # Features:
-Link to plex.tv
+Link to Plex.tv
 
-Link to PlexRequests
+Link to PlexRequests (https://github.com/lokenx/plexrequests-meteor)
 
-Link to PlexEmail
+Link to PlexEmail (https://github.com/jakewaldron/PlexEmail)
 
 Shows Plex status (just an image, you have to manually update it when you're going to do maintenance) or do as I do and have a "We'll be back soon" site that you can quickly change so that your domain points to that instead of PlexRedirect.
 
