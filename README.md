@@ -3,8 +3,11 @@ a Plex landing page that redirects you to various sites.
 
 # Features:
 Link to plex.tv
+
 Link to PlexRequests
+
 Link to PlexEmail
+
 Shows Plex status (just an image, you have to manually update it when you're going to do maintenance)
 
 # Installing:
