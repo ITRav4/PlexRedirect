@@ -1,12 +1,72 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-  <link rel="shortcut icon" type="image/x-icon" href="plexlanding.ico" />`
+    <link rel="shortcut icon" type="image/x-icon" href="plexlanding.ico" />`
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="">
     <meta name="author" content="">
+    <style>
+        body.offline #link-bar {
+            display:none;
+        }
+
+        body.online  #link-bar{
+            display:block;
+        }
+    </style>
+    <script src="assets/js/ping.js"></script>
+    <script type='text/javascript'>
+        HTMLElement.prototype.hasClass = function (className) {
+            if (this.classList) {
+                return this.classList.contains(className);
+            } else {
+                return (-1 < this.className.indexOf(className));
+            }
+        };
+
+        HTMLElement.prototype.addClass = function (className) {
+            if (this.classList) {
+                this.classList.add(className);
+            } else if (!this.hasClass(className)) {
+                var classes = this.className.split(" ");
+                classes.push(className);
+                this.className = classes.join(" ");
+            }
+            return this;
+        };
+
+        HTMLElement.prototype.removeClass = function (className) {
+            if (this.classList) {
+                this.classList.remove(className);
+            } else {
+                var classes = this.className.split(" ");
+                classes.splice(classes.indexOf(className), 1);
+                this.className = classes.join(" ");
+            }
+            return this;
+        };
+
+        function checkServer() {
+            var p = new Ping();
+            var server = document.domain //Try to get it automagically, but you can manually specify this
+            var timeout = 2000; //Milliseconds
+            var body = document.getElementsByTagName("body")[0];
+            p.ping(server+":32400", function(data) {
+                var serverMsg = document.getElementById( "server-status-msg" );
+                var serverImg = document.getElementById( "server-status-img" );
+                if (data < 1000){
+                    serverMsg.innerHTML ='Up and reachable';
+                    serverImg.src = "assets/img/ipad-hand.png";
+                    body.addClass('online').removeClass("offline");
+                }else{
+                    serverMsg.innerHTML = 'Down and unreachable';
+                    serverImg.src = "assets/img/ipad-hand-x.png";
+                }
+            }, timeout);
+        }
+    </script>
 
 
     <title>YOUR SERVER NAME HERE</title>
@@ -24,7 +84,7 @@
   
   </head>
 
-  <body>
+  <body onload="checkServer()" class="offline">
 
     <!-- Fixed navbar -->
     <div class="navbar navbar-default navbar-fixed-top">
@@ -40,7 +100,7 @@
         </div><!--/.nav-collapse -->
       </div>
     </div>
-<div class="container">
+    <div class="container" id="link-bar">
 		<div class="row mt centered">
 			<div class="col-lg-6 col-lg-offset-3">
 				
@@ -82,7 +142,7 @@
 				<div class="col-lg-6">
 					<h1><br/>
 					<center>YOUR SERVER NAME HERE Status:</h1></center>
-					<center><h4>UP and reachable.</h4></center><br/>
+					<center><h4 id="server-status-msg">Checking...</h4></center><br/>
 					<br/>
 					<br/>
 					<form class="form-inline" role="form">
@@ -92,7 +152,7 @@
 					  				
 				</div><!-- /col-lg-6 -->
 				<div class="col-lg-6">
-					<img class="img-responsive" src="assets/img/ipad-hand.png" alt="">
+					<img id="server-status-img" class="img-responsive" src="assets/img/ipad-hand-x.png" alt="">
 				</div><!-- /col-lg-6 -->
 				
 			</div><!-- /row -->
