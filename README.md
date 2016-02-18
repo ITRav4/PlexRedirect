@@ -14,7 +14,7 @@ Link to PlexRequests (https://github.com/lokenx/plexrequests-meteor)
 
 Link to PlexEmail (https://github.com/jakewaldron/PlexEmail)
 
-Shows Plex status (online or offline)
+Shows Plex status (online or offline) (https://github.com/alfg/ping.js)
 
 # Installing:
 Add this to your webserver root folder. You can rename it to your server name if you would like. Access it via your IP address.
