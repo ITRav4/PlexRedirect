@@ -3,6 +3,7 @@ a Plex landing page that redirects you to various sites.
 
 # Contributors:
 EldonMcGuinness: Added ping.js to the code so the website now automatically checks the server status.
+
 lienma: Fixed Google fonts so it now chooses between https and http
 
 
