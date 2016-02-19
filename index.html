@@ -58,11 +58,11 @@
                 var serverImg = document.getElementById( "server-status-img" );
                 if (data < 1000){
                     serverMsg.innerHTML ='Up and reachable';
-                    serverImg.src = "assets/img/ipad-hand.png";
+                    serverImg.src = "assets/img/ipad-hand-on.png";
                     body.addClass('online').removeClass("offline");
                 }else{
                     serverMsg.innerHTML = 'Down and unreachable';
-                    serverImg.src = "assets/img/ipad-hand-x.png";
+                    serverImg.src = "assets/img/ipad-hand-off.png";
                 }
             }, timeout);
         }
@@ -152,7 +152,7 @@
 					  				
 				</div><!-- /col-lg-6 -->
 				<div class="col-lg-6">
-					<img id="server-status-img" class="img-responsive" src="assets/img/ipad-hand-x.png" alt="">
+					<img id="server-status-img" class="img-responsive" src="assets/img/ipad-hand.png" alt="">
 				</div><!-- /col-lg-6 -->
 				
 			</div><!-- /row -->
