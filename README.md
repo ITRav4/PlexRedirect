@@ -27,3 +27,6 @@ Ex: www.example.com points to x.x.x.x:xxxx/PlexRedirect. I then have a subdomain
 
 ## Want to help out?
 Want to  make PlexRedirect better? Feel free to fork the repo and submit a pull request!
+
+## License
+Licensed under The MIT License. The Plex logo and name are copyright of Plex Inc.
