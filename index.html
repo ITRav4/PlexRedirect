@@ -50,7 +50,7 @@
 
         function checkServer() {
             var p = new Ping();
-            var server = document.domain //Try to get it automagically, but you can manually specify this
+            var server = document.domain; //Try to get it automagically, but you can manually specify this
             var timeout = 2000; //Milliseconds
             var body = document.getElementsByTagName("body")[0];
             p.ping(server+":32400", function(data) {
@@ -79,7 +79,7 @@
     <link href="assets/css/main.css" rel="stylesheet">
 
     <!-- Fonts from Google Fonts -->
-	<link href='//fonts.googleapis.com/css?family=Lato:300,400,900' rel='stylesheet' type='text/css'>
+    <link href='//fonts.googleapis.com/css?family=Lato:300,400,900' rel='stylesheet' type='text/css'>
     
   
   </head>
