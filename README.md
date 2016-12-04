@@ -18,6 +18,10 @@ Blank spaces are where your server name goes. If you don't have a server name yo
 
 [@nagarjuna993](https://github.com/@nagarjuna993): Thanks for the puff img.
 
+[TheDarocker](https://github.com/TheDarocker): Add a closing > and remove a few unneeded(?) HTML tags.
+
+Add a closing > and remove a few unneeded(?) HTML tags
+
 ## Installing:
 Add this to your webserver root folder. You can rename it to your server name if you would like. Access it via your IP address.
 
