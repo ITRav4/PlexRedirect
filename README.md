@@ -34,5 +34,9 @@ Ex: www.example.com points to x.x.x.x:xxxx/PlexRedirect. I then have a subdomain
 ## Want to help out?
 Want to  make PlexRedirect better? Feel free to fork the repo and submit a pull request!
 
+## Troubleshooting
+I can't get ping to show my server online or offline!
+* Check to see if you can semicolons where you changed "document.domain" to your IP address or to a DNS service. Something like "192.168.1.1" or "mydns.dnservice.com"
+
 ## License
 Licensed under The MIT License. The Plex logo and name are copyright of Plex Inc.
