@@ -20,8 +20,6 @@ Blank spaces are where your server name goes. If you don't have a server name yo
 
 [TheDarocker](https://github.com/TheDarocker): Add a closing > and remove a few unneeded(?) HTML tags.
 
-Add a closing > and remove a few unneeded(?) HTML tags
-
 ## Installing:
 Add this to your webserver root folder. You can rename it to your server name if you would like. Access it via your IP address.
 
