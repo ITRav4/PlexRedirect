@@ -27,6 +27,13 @@ HTMLElement.prototype.removeClass = function (className) {
     }
     return this;
 };
+HTMLElement.prototype.attr = function (attribute, value) {
+    this.setAttribute(attribute, value);
+    return this;
+};
+Object.prototype.hasAttibute = function(attribute) {
+    return typeof this[attribute] !== "undefined";
+};
 
 function createPlexRedirect() {
     window.plexRedirect = new PlexRedirect();
@@ -50,6 +57,29 @@ var PlexRedirect = function() {
             server_down: "Down and unreachable"
         }
     };
+    this.default_applications = {
+        PlexWeb: {
+            url: 'http://app.plex.tv/web/app',
+            image: 'assets/img/s01.png',
+            header: 'Access <span class="server-name">SERVER</span>',
+            description: 'Access the <span class="server-name">SERVER</span> library with over X Movies & X TV Shows available instantly.'
+        },
+        PlexRequests: {
+            url: '#PLEXREQUESTS_LINK_HERE',
+            image: 'assets/img/s02.png',
+            header: 'Request',
+            description: 'Want to watch a Movie or TV Show but it\'s not currently on <span class="server-name">SERVER</span>? Request it here!'
+        },
+        PlexEmail: {
+            url: '#PLEXEMAIL_LINK_HERE',
+            image: 'assets/img/s03.png',
+            header: 'What\'s New',
+            description: 'See what has been recently added to <span class="server-name">SERVER</span> without having to log in.'
+        }
+    };
+
+    var linkBarElement = document.getElementById('link-bar');
+    this.linkBarRow = linkBarElement.querySelector('.row');
 };
 PlexRedirect.prototype = {
     startPlexRedirect: function() {
@@ -68,6 +98,8 @@ PlexRedirect.prototype = {
         return (typeof param !== "undefined" && param !== "");
     },
     setSiteSettings: function() {
+        this.createLinkBar();
+
         var navbarBrand = document.getElementById('navbar-brand');
         var serverConfig = this.config.server;
         if(serverConfig.brand_url !== "") {
@@ -84,6 +116,47 @@ PlexRedirect.prototype = {
         }
 
         this.checkServer();
+    },
+    createLinkBar: function () {
+        this.numberOfApplications = Object.keys(this.config.applications).length;
+        if(this.numberOfApplications == 0) {
+            this.config.applications = this.default_applications;
+            this.numberOfApplications = Object.keys(this.config.applications).length;
+        }
+
+        for(var key in this.config.applications) {
+            if (!this.config.applications.hasOwnProperty(key)) continue;
+
+            this.createApplicationElement(this.config.applications[key], key);
+        }
+    },
+    createApplicationElement: function(currentApplication, key) {
+        var div = document.createElement('div').addClass(this.getApplicationColumnWidth());
+        var link = document.createElement('a')
+            .attr('href', currentApplication.hasAttibute('url') ? currentApplication.url : this.default_applications[key].url)
+            .attr('target', '_top');
+        var image = document.createElement('img')
+            .attr('src', currentApplication.hasAttibute('image') ? currentApplication.image : this.default_applications[key].image)
+            .attr('width', '180');
+        var header = document.createElement('h4');
+        header.innerHTML = currentApplication.hasAttibute('header') ? currentApplication.header : this.default_applications[key].header;
+
+        var description = document.createElement('p');
+        description.innerHTML = currentApplication.hasAttibute('description') ? currentApplication.description : this.default_applications[key].description;
+
+        link.appendChild(image);
+        link.appendChild(header);
+        link.appendChild(description);
+
+        div.appendChild(link);
+        this.linkBarRow.appendChild(div);
+    },
+    getApplicationColumnWidth: function() {
+        if(this.numberOfApplications <= 4) {
+            return 'col-lg-' + (12 / this.numberOfApplications);
+        }
+
+        return 'col-lg-4';
     },
     checkServer: function() {
         var p = new Ping();

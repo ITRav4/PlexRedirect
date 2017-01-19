@@ -1,5 +1,3 @@
-
-
 body {
   background-color: #1F1F1F;
     font-family: 'Lato', sans-serif;
@@ -115,24 +113,11 @@ i {
 
 /* HeaderWrap */
 #headerwrap {
-	/* background: url(../img/bg01.jpg) no-repeat center top; */
 	background-color: #333332;
 	margin-top: -20px;
 	padding-top:80px;
-	background-attachment: relative;
-	background-position: center center;
 	min-height: 0px;
 	width: 100%;
-	
-    -webkit-background-size: 100%;
-    -moz-background-size: 100%;
-    -o-background-size: 100%;
-    background-size: 100%;
-
-    -webkit-background-size: cover;
-    -moz-background-size: cover;
-    -o-background-size: cover;
-    background-size: cover;
 }
 
 #headerwrap h1 {
