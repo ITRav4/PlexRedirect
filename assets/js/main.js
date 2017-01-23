@@ -62,52 +62,61 @@ var PlexRedirect = function() {
             server_down: "Down and unreachable"
         }
     };
+    this.app_configs = {
+        PlexWeb: {
+            url: 'http://app.plex.tv/web/app',
+            image: 'assets/img/plex.png',
+            header: 'Access <span class="server-name">SERVER</span>',
+            description: 'Access the <span class="server-name">SERVER</span> library with over <span class="server-movies">1000</span> Movies & <span class="server-tv">500</span> TV Shows available instantly.'
+        },
+        PlexRequests: {
+            url: document.domain + ':3000',
+            image: 'assets/img/plexrequests.png',
+            header: 'Requests',
+            description: 'Want to watch a Movie or TV Show but it\'s not currently on <span class="server-name">SERVER</span>? Use PlexRequests to request it!'
+        },
+        Ombi: {
+            url: document.domain + ':3579',
+            image: 'assets/img/ombi.png',
+            header: 'Requests',
+            description: 'Want to watch a Movie or TV Show but it\'s not currently on <span class="server-name">SERVER</span>? Use Ombi to request it!'
+        },
+        PlexEmail: {
+            url: document.domain + '#PLEXEMAIL_LINK_HERE',
+            image: 'assets/img/plexemail.png',
+            header: 'What\'s New',
+            description: 'See what has been recently added to <span class="server-name">SERVER</span> without having to log in.'
+        },
+        PlexPy: {
+            url: document.domain + ':8181',
+            image: 'assets/img/plexpy.png',
+            header: 'Server stats',
+            description: 'Want to know what\'s going on at <span class="server-name">SERVER</span> or just interested in the most viewed movie? View it here!'
+        },
+        Sonarr: {
+            url: document.domain + ':8989',
+            image: 'assets/img/sonarr.png',
+            header: 'Series watchlist',
+            description: 'View the list of series that currently being monitored.'
+        },
+        Radarr: {
+            url: document.domain + ':7878',
+            image: 'assets/img/radarr.png',
+            header: 'Movies watchlist',
+            description: 'View the list of movies that currently being monitored.'
+        }
+    };
     this.default_applications = [
         {
-            PlexWeb: {
-                url: 'http://app.plex.tv/web/app',
-                image: 'assets/img/plex.png',
-                header: 'Access <span class="server-name">SERVER</span>',
-                description: 'Access the <span class="server-name">SERVER</span> library with over <span class="server-movies">1000</span> Movies & <span class="server-tv">500</span> TV Shows available instantly.'
-            },
-            PlexRequests: {
-                url: document.domain + ':3000',
-                image: 'assets/img/plexrequests.png',
-                header: 'Requests',
-                description: 'Want to watch a Movie or TV Show but it\'s not currently on <span class="server-name">SERVER</span>? Use PlexRequests to request it!'
-            },
-            Ombi: {
-                url: document.domain + ':3579',
-                image: 'assets/img/ombi.png',
-                header: 'Requests',
-                description: 'Want to watch a Movie or TV Show but it\'s not currently on <span class="server-name">SERVER</span>? Use Ombi to request it!'
-            },
-            PlexEmail: {
-                url: document.domain + '#PLEXEMAIL_LINK_HERE',
-                image: 'assets/img/plexemail.png',
-                header: 'What\'s New',
-                description: 'See what has been recently added to <span class="server-name">SERVER</span> without having to log in.'
-            }
+            PlexWeb: {},
+            PlexRequests: {},
+            Ombi: {},
+            PlexEmail: {}
         },
         {
-            PlexPy: {
-                url: document.domain + ':8181',
-                image: 'assets/img/plexpy.png',
-                header: 'Server stats',
-                description: 'Want to know what\'s going on at <span class="server-name">SERVER</span> or just interested in the most viewed movie? View it here!'
-            },
-            Sonarr: {
-                url: document.domain + ':8989',
-                image: 'assets/img/sonarr.png',
-                header: 'Series watchlist',
-                description: 'View the list of series that currently being monitored.'
-            },
-            Radarr: {
-                url: document.domain + ':7878',
-                image: 'assets/img/radarr.png',
-                header: 'Movies watchlist',
-                description: 'View the list of movies that currently being monitored.'
-            }
+            PlexPy: {},
+            Sonarr: {},
+            Radarr: {}
         }
     ];
 
@@ -190,22 +199,23 @@ PlexRedirect.prototype = {
     },
     createApplicationElement: function(row, key, columnWidht, offset) {
         var currentApplication = this.config.applications[row][key];
+        console.log(currentApplication);
 
         var div = document.createElement('div').addClass('col-lg-' + columnWidht);
         if(offset) {
             div.addClass('col-lg-offset-' + offset);
         }
         var link = document.createElement('a')
-            .attr('href', currentApplication.hasAttibute('url') ? currentApplication.url : this.default_applications[row][key].url)
+            .attr('href', currentApplication.hasAttibute('url') ? currentApplication.url : this.app_configs[key].url)
             .attr('target', '_top');
         var image = document.createElement('img')
-            .attr('src', currentApplication.hasAttibute('image') ? currentApplication.image : this.default_applications[row][key].image)
+            .attr('src', currentApplication.hasAttibute('image') ? currentApplication.image : this.app_configs[key].image)
             .attr('width', '180');
         var header = document.createElement('h4');
-        header.innerHTML = currentApplication.hasAttibute('header') ? currentApplication.header : this.default_applications[row][key].header;
+        header.innerHTML = currentApplication.hasAttibute('header') ? currentApplication.header : this.app_configs[key].header;
 
         var description = document.createElement('p');
-        description.innerHTML = currentApplication.hasAttibute('description') ? currentApplication.description : this.default_applications[row][key].description;
+        description.innerHTML = currentApplication.hasAttibute('description') ? currentApplication.description : this.app_configs[key].description;
 
         link.appendChild(image);
         link.appendChild(header);
