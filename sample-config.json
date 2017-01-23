@@ -1,0 +1,36 @@
+{
+  "server": {
+    "name": "Plex Server",
+    "brand_url": "/",
+    "plex_domain": "192.168.0.255",
+    "plex_port": "32400"
+  },
+  "messages": {
+    "server_up": "Up and running!",
+    "server_down": "We can't reach Plex..."
+  },
+  "applications": [
+    {
+      "PlexWeb": {
+
+      },
+      "PlexRequests": {
+        "header": "Request a new movie!"
+      },
+      "PlexEmail": {
+
+      }
+    },
+    {
+      "PlexPy": {
+
+      },
+      "Sonarr": {
+
+      },
+      "Radarr": {
+
+      }
+    }
+  ]
+}
